@@ -1,0 +1,15 @@
+---
+- hosts: servers
+  remote_user: vagrant
+  tasks:
+
+  - name: Install httpd package
+    apt: name=apache2 state=latest
+    sudo: yes
+
+  - name: Starting httpd service
+    service: name=apache2 state=started
+    sudo: yes
+
+  - name: Mostrando como debug funciona
+    debug: msg={{ ansible_distribution }}
