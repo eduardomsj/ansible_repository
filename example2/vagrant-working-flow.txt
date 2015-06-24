@@ -1,0 +1,6 @@
+1 - Add new task;
+2 - Run vagrant provision;
+3 - If it fails, go back and debug;
+4 - If it succeeds, proceed to the next task;
+5 - Once all the tasks are complete, run vagrant destroy to destroy the machine;
+6 - Run vagrant up to make sure that the machine comes up from scratch and gets configured succesfully.
