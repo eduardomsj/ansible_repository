@@ -1,0 +1,12 @@
+---
+- hosts: servers
+  remote_user: vagrant
+  tasks:
+#    - shell: /bin/ls /
+    - action: shell /bin/ls > testfile.txt
+      register: list_files
+      sudo: yes
+
+    - assert:
+        that:
+          - "'testfile.txt' in list_files.stdout"
