@@ -1,0 +1,12 @@
+---
+- hosts: servers
+  tasks:
+
+    - name: Testando privilégios de sudo
+      command: /usr/bin/sudo -v
+      register: sudo_response
+      ignore_errors: yes
+
+    - name: Parar caso usuário não tenha privilégios de sudo
+      fail: msg="Usuário não tem privilégios de sudo"
+      when: sudo_response.rc == 1

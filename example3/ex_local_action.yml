@@ -1,0 +1,10 @@
+---
+- hosts: servers
+  tasks:
+    
+    - name: Get quote of the day
+      local_action: uri url=http://api.theysaidso.com/qod.json
+      register: qod
+
+    - name: Print quote of the day
+      debug: msg="{{ qod.json.contents.quotes }}"

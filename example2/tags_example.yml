@@ -1,0 +1,14 @@
+---
+- hosts: servers
+  tasks:
+    - name: Stop httpd service
+      service: name=apache2 state=stopped
+      tags:
+        - stop
+      sudo: yes
+
+    - name: Start httpd service
+      service: name=apache2 state=started
+      tags:
+        - start
+      sudo: yes

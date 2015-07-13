@@ -1,0 +1,9 @@
+---
+- hosts: servers
+  tasks:
+    - name: Instalando pacotes
+      apt: name={{ item }} state=latest
+      with_items:
+         - apache2
+         - mysql-server
+      sudo: yes

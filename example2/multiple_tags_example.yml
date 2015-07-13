@@ -1,0 +1,27 @@
+---
+- hosts: servers
+  tasks:
+    - name: Testing user sudo privilege
+      command: /usr/bin/sudo -v
+      register: sudo_response
+      ignore_errors: yes
+      tags:
+        - pre_check
+
+    - name: Stop further if user doesn't have sudo privilege
+      fail: msg="User doesn't have sudo privilege"
+      when: sudo_response.rc != 0
+      tags:
+        - pre_check
+
+    - name: Stop httpd service
+      service: name=apache2 state=stopped
+      tags:
+        - stop
+      sudo: yes
+
+    - name: Start httpd service
+      service: name=apache2 state=started
+      tags:
+        - start
+      sudo: yes

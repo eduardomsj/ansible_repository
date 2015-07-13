@@ -1,0 +1,17 @@
+---
+- hosts: servers
+  tasks:
+
+    - name: Check running processes on remote system
+      shell: hostname
+      register: remote_process
+
+    - name: remote running processes
+      debug: msg="{{ remote_process.stdout }}"
+
+    - name: check running processes on local system
+      local_action: shell hostname
+      register: local_process
+
+    - name: local running processes
+      debug: msg="{{ local_process.stdout }}"

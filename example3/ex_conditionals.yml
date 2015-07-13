@@ -1,0 +1,13 @@
+---
+- hosts: servers
+  tasks:
+
+  - name: Instalar o pacote httpd - CentOS
+    yum: name=httpd state=latest
+    sudo: yes
+    when: ansible_os_family == "Redhat"
+
+  - name: Instalar o pacote apache2 - Debian/Ubuntu
+    yum: name=apache2 state=latest
+    sudo: yes
+    when: ansible_os_family == "Debian"
